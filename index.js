@@ -1,14 +1,18 @@
 //global modules
-const express = require('express');
-let app = express();
 const ccxt = require('ccxt');
+const express = require('express');
 
 //local modules
 const helpers = require('./helpers');
 
+//config server
+let app = express();
+let port = process.env.PORT || 3000;
+
 //middleware
 app.set('view engine', 'pug');
 
+//server
 let binanceTickers = helpers.getBinance();
 let krakenTickers = helpers.getKraken();
 let bitfinexTickers = helpers.getBitfinex();
@@ -64,6 +68,6 @@ krakenTickers.then((krakenData) => {
   });
 });
 
-app.listen(8000, () => {
-  console.log('Example app listening on port 8000');
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 })

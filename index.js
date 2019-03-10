@@ -1,6 +1,7 @@
 //global modules
 const ccxt = require('ccxt');
 const express = require('express');
+const moment = require('moment');
 
 //local modules
 const helpers = require('./helpers');
@@ -11,6 +12,11 @@ let port = process.env.PORT || 3000;
 
 //middleware
 app.set('view engine', 'pug');
+app.disable('view cache');
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+  next()
+});
 
 //server
 let binanceTickers = helpers.getBinance();
@@ -31,11 +37,13 @@ krakenTickers.then((krakenData) => {
       let btcBitfinexFee = (0.0004 * krakenData[2].bid).toFixed(2);
       let ethBinanceFee = (0.01 * krakenData[3].bid).toFixed(2);
 
+      let currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+
       app.get('/', (req, res) => {
         res.render('index', {
           title: "Arbitrage!",
           cashout: "Cashout Options",
-          details: "53.1 dash",
+          details: `53.1 dash | ${currentTime}`,
 
           btc: `BTC to USD (fees: Bitfinex: $${btcBitfinexFee}, Binance: $${btcBinanceFee})`,
           bitfinexBuyBTC: `Bitfinex / Kraken: ${bitfinexBuyBTC}`,
@@ -67,6 +75,8 @@ krakenTickers.then((krakenData) => {
     });
   });
 });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

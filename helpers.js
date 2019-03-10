@@ -55,5 +55,5 @@ module.exports = {
   getTickers,
   getBinance,
   getKraken,
-  getBitfinex
+  getBitfinex,
 }

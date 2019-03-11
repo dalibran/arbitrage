@@ -52,7 +52,6 @@ function getBitfinex() {
 }
 
 module.exports = {
-  getTickers,
   getBinance,
   getKraken,
   getBitfinex,

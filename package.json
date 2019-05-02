@@ -14,7 +14,6 @@
     "axios": "^0.18.0",
     "ccxt": "^1.18.352",
     "express": "^4.16.4",
-    "moment": "^2.24.0",
     "pug": "^2.0.3"
   },
   "devDependencies": {

@@ -35,7 +35,7 @@ async function getData() {
 }
 
 app.get('/', async (req, res) => {
-  const testValue = 74.931;
+  const testValue = 74.93099;
   let {krakenTickers, bitfinexTickers, binanceTickers} = await getData();
   let bitfinexBuyBTC = (testValue * bitfinexTickers[1].bid) * krakenTickers[2].bid;
   let binanceBuyBTC = (testValue * binanceTickers[0].bid) * krakenTickers[2].bid;
@@ -49,7 +49,7 @@ app.get('/', async (req, res) => {
   res.render('index', {
     title: "Arbitrage!",
     cashout: "Cashout Options",
-    details: `53.1 dash | ${Date(Date.now().toString())}`,
+    details: `${testValue} dash | ${Date(Date.now().toString())}`,
 
     btc: `BTC to USD (fees: Bitfinex: $${btcBitfinexFee}, Binance: $${btcBinanceFee})`,
     bitfinexBuyBTC: `Bitfinex / Kraken: ${bitfinexBuyBTC}`,

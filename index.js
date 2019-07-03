@@ -35,7 +35,7 @@ async function getData() {
 }
 
 app.get('/', async (req, res) => {
-  const testValue = 74.93099;
+  const testValue = 51.774;
   let {krakenTickers, bitfinexTickers, binanceTickers} = await getData();
   let bitfinexBuyBTC = (testValue * bitfinexTickers[1].bid) * krakenTickers[2].bid;
   let binanceBuyBTC = (testValue * binanceTickers[0].bid) * krakenTickers[2].bid;
@@ -83,6 +83,3 @@ app.get('/', async (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-
-
-

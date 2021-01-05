@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "ccxt": "^1.18.352",
     "express": "^4.16.4",
     "pug": "^2.0.3"
